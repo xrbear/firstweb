@@ -23,7 +23,7 @@ import java.util.Objects;
  */
 @RestController
 @SpringBootApplication
-@ComponentScan(value = "com.study.demo")
+@ComponentScan(value = {"com.study.demo"})
 public class StudyDemoApplication {
 
 
@@ -37,11 +37,6 @@ public class StudyDemoApplication {
     }
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(StudyDemoApplication.class, args);
-        new AnnotationConfigApplicationContext();
-        String applicationName = applicationContext.getApplicationName();
 
-        ThreadBizImpl threadBizImpl = applicationContext.getBean("threadBizImpl", ThreadBizImpl.class);
-        System.out.println("---------");
-        threadBizImpl.run();
     }
 }
