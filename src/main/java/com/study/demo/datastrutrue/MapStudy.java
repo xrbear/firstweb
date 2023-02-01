@@ -1,8 +1,10 @@
 package com.study.demo.datastrutrue;
 
+import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.vm.VM;
 import sun.misc.Unsafe;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -15,18 +17,42 @@ public class MapStudy {
 
 
     public void studyHashMap(){
-        Map<String,Object> map = new ConcurrentHashMap<>();
-        for (int i=0;i<12;i++){
-            map.put(String.valueOf(i),i);
-        }
+        Map<String,Object> map = new HashMap<>();
+
         Object o = map.put("xurong", 1995);
+        Object o1 = map.put("xurong", 1995);
         System.out.println(o);
         System.out.println(map.get("xurong"));
         System.out.println(map.keySet());
     }
 
     public static void main(String[] args) throws InterruptedException {
+        final Object obj = new Object();
+        System.out.println("启动后对象布局：\n" + ClassLayout.parseInstance(obj).toPrintable());
+        //JKD8延迟4S开启偏向锁
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //可偏向 101
+        final Object monitor = new Object();
+        System.out.println("延迟5秒后对象布局：\n" + ClassLayout.parseInstance(monitor).toPrintable());
+        //偏向锁
+        synchronized (monitor) {
+            System.out.println("对象加锁后的布局：\n" + ClassLayout.parseInstance(monitor).toPrintable());
+        }
+        System.out.println("对象释放锁后的布局：\n" + ClassLayout.parseInstance(monitor).toPrintable());
+
+
         Object mapStudy = new Object();
+        ClassLayout classLayout = ClassLayout.parseInstance(mapStudy);
+        String printable = classLayout.toPrintable();
+        System.out.println(printable);
+
+        MapStudy mapStudy1 = new MapStudy();
+        mapStudy1.studyHashMap();
+
      //   mapStudy.studyHashMap();
         /*int hashCode = mapStudy.hashCode();
         long l = VM.current().addressOf(mapStudy);

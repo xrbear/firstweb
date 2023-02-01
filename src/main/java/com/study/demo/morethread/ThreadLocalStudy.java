@@ -31,7 +31,7 @@ public class ThreadLocalStudy {
     private ThreadLocal<Integer> age13 = new ThreadLocal<>();
     private ThreadLocal<Integer> age14 = new ThreadLocal<>();
     private ThreadLocal<Integer> age15 = new ThreadLocal<>();
-    private ThreadLocal<Integer> age16 = new InheritableThreadLocal<>();
+    private ThreadLocal<Integer> age16 = new ThreadLocal<>();
     private ThreadLocal<String> name = new ThreadLocal<>();
 
     private ThreadFactory threadFactory = new ThreadFactoryBuilder().build();
@@ -41,7 +41,9 @@ public class ThreadLocalStudy {
     public static void main(String[] args) throws InterruptedException {
         ThreadLocalStudy threadLocalStudy = new ThreadLocalStudy();
         threadLocalStudy.setAge16(1);
+        threadLocalStudy.setAge3(3);
         System.out.println(threadLocalStudy.getAge16());
+        System.out.println(threadLocalStudy.getAge3());
     }
 
     private Integer getAge(){
@@ -50,6 +52,9 @@ public class ThreadLocalStudy {
 
     private Integer getAge16(){
         return age16.get();
+    }
+    private Integer getAge3(){
+        return age3.get();
     }
 
     private void setAge(int i) {
@@ -99,8 +104,6 @@ public class ThreadLocalStudy {
     private void setAge16(int i) {
         age16.set(i);
     }
-
-
 
 
 
