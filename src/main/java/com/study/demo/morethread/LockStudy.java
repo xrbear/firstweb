@@ -6,6 +6,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -21,19 +22,29 @@ public class LockStudy {
         System.out.println(i);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         LockStudy lockStudy = new LockStudy();
         for (int i = 0; i < 5; i++) {
             int finalI = i;
             executor.execute(() ->{
                 lockStudy.syncMethod(finalI);
             });
+            executor.submit(()->{
+
+            });
         }
 
         ReentrantLock reentrantLock = new ReentrantLock();
-        reentrantLock.lock();
+        reentrantLock.lockInterruptibly();
         try{
+            reentrantLock.lock();
+            try{
 
+            }catch (Exception e){
+
+            }finally {
+                reentrantLock.unlock();
+            }
         }catch (Exception e){
 
         }finally {

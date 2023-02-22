@@ -1,5 +1,8 @@
 package com.study.demo.biz;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author ：xurong02
  * @date ：2022/11/6 6:34 下午
@@ -16,5 +19,7 @@ public class Run {
         System.out.println(tl.get());
         System.out.println(tl.get());
 
+        List<String> list = new ArrayList<>();
+        list.add("1");
     }
 }

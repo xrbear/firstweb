@@ -1,9 +1,15 @@
 package com.study.demo.controller;
 
+import com.study.demo.bean.Person;
 import com.study.demo.biz.ThreadBizImpl;
 import com.study.demo.service.HelloService;
+import com.study.demo.util.HeadUtil;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -29,14 +35,22 @@ public class StudyDemoApplication {
 
     @Resource
     private HelloService helloService;
+    @Resource
+    private Person person;
 
     @RequestMapping("/")
     public String hello(){
          helloService.sayHello("world");
-         return "hello";
+
+         new Thread(()->{
+             System.out.println("子线程输出"+HeadUtil.getThreadLocal());
+         }).start();
+         return (String) HeadUtil.getThreadLocal();
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(StudyDemoApplication.class, args);
 
+
+        //     applicationContext.getBean("");
     }
 }

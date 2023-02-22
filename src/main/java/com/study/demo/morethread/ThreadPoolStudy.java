@@ -27,7 +27,7 @@ public class ThreadPoolStudy {
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 
         /**
-         * 支持执行延迟任务或者周期性执行任务的线程池
+         * 支持执行延迟任务或者周期性执行任务的线程池,，最大线程数2的31-1
          */
         ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);
 
@@ -37,7 +37,7 @@ public class ThreadPoolStudy {
                 System.out.println(thread.getName()+"---->"+thread.getId());
             });
         }
-        Future<?> submit = executorService.submit(() -> System.out.println("submit"));
+        CompletableFuture<?> submit = (CompletableFuture<?>) executorService.submit(() -> System.out.println("submit"));
         Object o = submit.get();
 
         Future<String> future = executorService.submit(() -> "callable");
@@ -51,7 +51,6 @@ public class ThreadPoolStudy {
                 System.out.println("scheduleAtFixedRate");
             }
         },5000,3000,TimeUnit.SECONDS);
-
 
     }
 

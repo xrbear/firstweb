@@ -9,6 +9,48 @@ import java.util.Comparator;
 public class DongTaiGuiHua {
 
     /**
+     * 背包问题
+     */
+    public static int maxValue(int[] w, int[] v , int bag){
+        if (w == null || v == null || w.length != v.length){
+            return 0;
+        }
+        int N = w.length;
+        int[][] dp = new int[N+1][bag+1];
+        for (int index = N-1; index >= 0 ; index--) {
+            for (int rest = 0; rest <= bag; rest++) {
+                int p1 = dp[index +1][rest];
+                int p2 =0;
+                int next = rest- w[index] <0?-1:dp[index+1][rest -w[index]];
+                if (next != -1){
+                    p2 = next + v[index];
+                }
+                dp[index][rest] = Math.max(p1,p2);
+            }
+        }
+
+        return processBag(w,v,0,bag);
+    }
+
+    private static int processBag(int[] w, int[] v, int index, int bag) {
+        if (bag<0){
+            return -1;
+        }
+        if (index == w.length){
+            return 0 ;
+        }
+        //不要当前货物
+        int p1 = processBag(w,v,index+1,bag);
+        //要
+        int p2 =0;
+        if (bag -w[index] >= 0){
+            p2 = v[index] + processBag(w,v,index+1,bag-w[index]);
+        }
+
+        return Math.max(p1,p2);
+    }
+
+    /**
      *  规定1对应A,2对应B，3对应C。。。26对应Z
      *  那么一个数字字符串比如"111"就可以转化为："AAA"，
      *  "KA"，"AK"
@@ -36,8 +78,10 @@ public class DongTaiGuiHua {
     }
 
     public static void main(String[] args) {
-   //     System.out.println(transferNum("11111"));
-        System.out.println(jump2(7,7,10));
+        int[] w = {3,2,4,7};
+        int[] v = {5,6,3,19};
+        System.out.println(maxValue(w,v,11));
+  //      System.out.println(jump2(7,7,10));
     }
 
     public static int dp1(String str){

@@ -17,7 +17,7 @@ public class MapStudy {
 
 
     public void studyHashMap(){
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new ConcurrentHashMap<>();
 
         Object o = map.put("xurong", 1995);
         Object o1 = map.put("xurong", 1995);
