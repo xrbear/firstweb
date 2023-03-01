@@ -42,9 +42,6 @@ public class StudyDemoApplication {
     public String hello(){
          helloService.sayHello("world");
 
-         new Thread(()->{
-             System.out.println("子线程输出"+HeadUtil.getThreadLocal());
-         }).start();
          return (String) HeadUtil.getThreadLocal();
     }
     public static void main(String[] args) throws Exception {

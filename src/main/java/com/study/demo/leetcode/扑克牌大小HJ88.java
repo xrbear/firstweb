@@ -25,15 +25,15 @@ import java.util.Scanner;
 public class 扑克牌大小HJ88 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        // 注意 hasNext 和 hasNextLine 的区别
-        while (in.hasNextInt()) { // 注意 while 处理多个 case
-            int a = in.nextInt();
-            int b = in.nextInt();
-            System.out.println(a + b);
+        while(in.hasNext()){
+            String s = in.nextLine();
+            String[] arr = s.split("-");
+            System.out.println(process(arr[0], arr[1]));
+            //System.out.println(isBoom(arr[1]));
         }
     }
 
-    public String process(String s1,String s2){
+    public static String process(String s1,String s2){
         HashMap<String, Integer> map = new HashMap<String, Integer>(){
             {
                 put("A", 14);
