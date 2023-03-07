@@ -15,7 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class LockStudy {
 
-    private static ThreadFactory threadFactory = new ThreadFactoryBuilder().build();
+    private static ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("").build();
     private static ThreadPoolExecutor executor = new ThreadPoolExecutor(5,10,10, TimeUnit.SECONDS,new LinkedBlockingQueue<>(10),threadFactory, new ThreadPoolExecutor.CallerRunsPolicy());
 
     public synchronized void syncMethod(Integer i){
@@ -23,6 +23,7 @@ public class LockStudy {
     }
 
     public static void main(String[] args) throws InterruptedException {
+
         LockStudy lockStudy = new LockStudy();
         for (int i = 0; i < 5; i++) {
             int finalI = i;

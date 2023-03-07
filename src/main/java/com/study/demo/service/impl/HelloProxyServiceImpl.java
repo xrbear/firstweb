@@ -1,6 +1,6 @@
-package com.study.demo.service;
+package com.study.demo.service.impl;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.study.demo.service.HelloService;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationHandler;

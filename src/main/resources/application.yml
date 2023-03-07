@@ -8,3 +8,8 @@ spring:
     publisher-confirm-type: correlated
     #确认消息已发送到队列(Queue)
     publisher-returns: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/xurongtest
+    password: xr10317139
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver

@@ -1,7 +1,8 @@
-package com.study.demo.service;
+package com.study.demo.service.impl;
 
 import com.study.demo.biz.CallableBiz;
 import com.study.demo.biz.ThreadBizImpl;
+import com.study.demo.service.ThreadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
