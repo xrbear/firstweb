@@ -21,7 +21,7 @@ public class PersonDaoImpl implements PersonDao {
 
     @Override
     public List<Person> searchPersonByIds(List<Integer> ids) {
-        personMapper.selectById(1)
+        personMapper.selectById(1);
         List<Person> people = personMapper.selectBatchIds(ids);
         return people;
     }

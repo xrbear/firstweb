@@ -1,5 +1,7 @@
 package com.study.demo.morethread;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
 import java.util.concurrent.*;
 
 /**
@@ -8,6 +10,8 @@ import java.util.concurrent.*;
  */
 public class ThreadPoolStudy {
 
+    static ThreadFactory factory = new ThreadFactoryBuilder().build();
+    static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5,5,5,TimeUnit.SECONDS, new LinkedBlockingQueue<>(1000),factory,new ThreadPoolExecutor.CallerRunsPolicy());
 
     ExecutorService executorService = Executors.newFixedThreadPool(10);
 
@@ -32,7 +36,7 @@ public class ThreadPoolStudy {
         ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);
 
         for (int i = 0; i < 5; i++) {
-            executorService.execute(() -> {
+            threadPoolExecutor.execute(() -> {
                 Thread thread = Thread.currentThread();
                 System.out.println(thread.getName()+"---->"+thread.getId());
             });

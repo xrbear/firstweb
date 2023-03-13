@@ -18,4 +18,9 @@ public class FanoutReceiverA {
         System.out.println("FanoutReceiverA消费者收到消息  : " +testMessage.toString());
     }
 
+
+    public static void main(String[] args) {
+        System.out.println(0 << Integer.SIZE - 3);;;
+    }
+
 }

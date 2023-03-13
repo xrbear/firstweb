@@ -1,11 +1,13 @@
 package com.study.demo.datastrutrue;
 
+import com.study.demo.bean.Person;
 import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.vm.VM;
 import sun.misc.Unsafe;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -27,6 +29,17 @@ public class MapStudy {
     }
 
     public static void main(String[] args) throws InterruptedException {
+
+        Map<Person,Integer> map = new HashMap<>(10);
+        Person p1 = new Person();
+        p1.setAddress("a1");
+        p1.setName("xurong1");
+        p1.hashCode();
+        map.put(p1,1);
+        p1.setName("xurong213");
+        p1.hashCode();
+        Integer integer = map.get(p1);
+
         final Object obj = new Object();
         System.out.println("启动后对象布局：\n" + ClassLayout.parseInstance(obj).toPrintable());
         //JKD8延迟4S开启偏向锁
