@@ -11,7 +11,7 @@ import java.util.Map;
  * @CreateTime : 2019/9/3
  * @Description :
  **/
-@Component
+//@Component
 @RabbitListener(queues = "fanout.B")
 public class FanoutReceiverB {
 

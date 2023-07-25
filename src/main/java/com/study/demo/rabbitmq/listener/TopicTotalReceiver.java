@@ -11,7 +11,7 @@ import java.util.Map;
  * @Description :
  **/
 
-@Component
+//@Component
 @RabbitListener(queues = "topic.woman")
 public class TopicTotalReceiver {
 

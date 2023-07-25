@@ -1,6 +1,7 @@
 package com.study.demo.service.impl;
 
 import com.study.demo.service.CarService;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
  * @date ：2023/3/7 12:20 上午
  */
 @Service
+@Primary
 public class CarServiceImpl implements CarService {
     @Override
     public String buyCar(String name) {

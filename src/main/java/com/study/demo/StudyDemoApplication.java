@@ -1,8 +1,10 @@
 package com.study.demo;
 
 import com.study.demo.bean.Person;
+import com.study.demo.service.CarService;
 import com.study.demo.service.HelloService;
 import com.study.demo.util.HeadUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -25,6 +27,8 @@ public class StudyDemoApplication {
     private HelloService helloService;
     @Resource
     private Person person;
+    @Autowired
+    private CarService carService;
 
     @RequestMapping("/")
     public String hello(){
@@ -32,10 +36,19 @@ public class StudyDemoApplication {
 
          return (String) HeadUtil.getThreadLocal();
     }
+
+    @RequestMapping("/buyCar")
+    public String buyCar(){
+        String car = carService.buyCar("car");
+        return car;
+    }
     public static void main(String[] args) throws Exception {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(StudyDemoApplication.class, args);
 
 
         //     applicationContext.getBean("");
     }
+
+
+
 }

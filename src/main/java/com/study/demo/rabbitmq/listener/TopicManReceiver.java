@@ -9,7 +9,7 @@ import java.util.Map;
  * @author ：xurong02
  * @date ：2023/1/17 3:36 下午
  */
-@Component
+//@Component
 @RabbitListener(queues = "topic.man")
 public class TopicManReceiver {
 

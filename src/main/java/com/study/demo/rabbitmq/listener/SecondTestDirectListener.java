@@ -10,7 +10,7 @@ import java.util.Map;
  * @author ：xurong02
  * @date ：2023/1/17 10:09 上午
  */
-@Component
+//@Component
 @RabbitListener(queues = "TestDirectQueue")
 public class SecondTestDirectListener {
 
