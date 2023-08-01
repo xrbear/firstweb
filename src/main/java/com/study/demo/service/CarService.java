@@ -1,6 +1,8 @@
 package com.study.demo.service;
 
-public interface CarService {
+import org.springframework.beans.factory.config.BeanPostProcessor;
+
+public interface CarService extends BeanPostProcessor {
 
     String buyCar(String name);
 }

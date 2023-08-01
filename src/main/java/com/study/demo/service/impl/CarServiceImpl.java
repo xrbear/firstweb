@@ -1,7 +1,8 @@
 package com.study.demo.service.impl;
 
+import com.study.demo.CarFactory;
 import com.study.demo.service.CarService;
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.BeansException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,10 +10,16 @@ import org.springframework.stereotype.Service;
  * @date ：2023/3/7 12:20 上午
  */
 @Service
-@Primary
 public class CarServiceImpl implements CarService {
     @Override
     public String buyCar(String name) {
         return "我买了一辆"+name;
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+
+        CarFactory.putService(beanName, (CarService) bean);
+        return bean;
     }
 }

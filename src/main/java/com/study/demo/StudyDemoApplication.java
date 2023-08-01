@@ -28,7 +28,7 @@ public class StudyDemoApplication {
     @Resource
     private Person person;
     @Autowired
-    private CarService carService;
+    private CarService carServiceImpl;
 
     @RequestMapping("/")
     public String hello(){
@@ -39,7 +39,7 @@ public class StudyDemoApplication {
 
     @RequestMapping("/buyCar")
     public String buyCar(){
-        String car = carService.buyCar("car");
+        String car = carServiceImpl.buyCar("car");
         return car;
     }
     public static void main(String[] args) throws Exception {

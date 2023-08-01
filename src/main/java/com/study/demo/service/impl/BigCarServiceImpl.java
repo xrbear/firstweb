@@ -1,11 +1,13 @@
 package com.study.demo.service.impl;
 
+import com.study.demo.service.CarService;
 import org.springframework.stereotype.Service;
 
-@Service
-public class BigCarServiceImpl extends CarServiceImpl{
+@Service("bigCarService")
+public class BigCarServiceImpl implements CarService {
 
+    @Override
     public String buyCar(String name) {
-        return "我买了一辆"+name;
+        return "BigCarServiceImpl  我买了一辆"+name;
     }
 }
