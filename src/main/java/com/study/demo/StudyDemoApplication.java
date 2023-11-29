@@ -33,8 +33,12 @@ public class StudyDemoApplication {
     @RequestMapping("/")
     public String hello(){
          helloService.sayHello("world");
-
-         return (String) HeadUtil.getThreadLocal();
+         HeadUtil.setThreadLocal("head");
+        String threadLocal = HeadUtil.getThreadLocal();
+        new Thread(()->{
+            System.out.println("子线程"+HeadUtil.getThreadLocal());
+        }).start();
+        return threadLocal;
     }
 
     @RequestMapping("/buyCar")

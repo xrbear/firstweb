@@ -16,7 +16,7 @@ public class CarServiceImpl implements CarService {
         return "我买了一辆"+name;
     }
 
-    @Override
+
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 
         CarFactory.putService(beanName, (CarService) bean);

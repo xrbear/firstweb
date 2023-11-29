@@ -1,5 +1,6 @@
 package com.study.demo.service.impl;
 
+import com.study.demo.annotation.Hello;
 import com.study.demo.service.HelloService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +15,7 @@ import java.util.concurrent.Executors;
 public class HelloServiceImpl implements HelloService {
 
     @Override
-    @Transactional
+    @Hello(name = "xurong", score = {10})
     public void sayHello(String name) {
         String s = "null";
         s.equals("23e");
