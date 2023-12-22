@@ -5,6 +5,8 @@ package com.study.demo.leetcode;
  * @date ：2023/2/24 5:27 下午
  */
 
+import org.checkerframework.checker.units.qual.A;
+
 import java.util.*;
 
 /**
@@ -19,16 +21,17 @@ public class 字母异位词分组49 {
      * @return
      */
     public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, List<String>> map = new HashMap<String, List<String>>();
-        for (String str : strs) {
-            char[] array = str.toCharArray();
-            Arrays.sort(array);
-            String key = new String(array);
-            List<String> list = map.getOrDefault(key, new ArrayList<String>());
-            list.add(str);
-            map.put(key, list);
+        Map<String, List<String>> map = new HashMap<>();
+        for (String str: strs){
+            char[] charArray = str.toCharArray();
+            Arrays.sort(charArray);
+            String s = new String(charArray);
+            List<String> stringList = map.getOrDefault(s, new ArrayList<>());
+            stringList.add(str);
+            map.put(s,stringList);
         }
-        return new ArrayList<List<String>>(map.values());
+
+        return new ArrayList<>(map.values());
     }
 
 }

@@ -20,24 +20,21 @@ public class 最长连续序列128 {
      * @return
      */
     public int longestConsecutive(int[] nums) {
-        int longest = 0, current=0;
-        int length = nums.length;
+        int longest =0;
         Set<Integer> numSet = new HashSet<>();
-        for (int i = 0; i < length; i++) {
-            numSet.add(nums[i]);
+        for (int num : nums){
+            numSet.add(num);
         }
-        for (int num: numSet) {
-            current =1;
-            if (numSet.contains(num-1)){
-                continue;
-            }else{
-                while(numSet.contains(num+1)){
-                    num++;
+        for (int num: numSet){
+            if (!numSet.contains(num-1)){
+                int current =1;
+                while(numSet.contains(num +1)){
                     current++;
                 }
+                longest = Math.max(longest,current);
             }
-            longest = Math.max(longest, current);
         }
+
         return longest;
     }
 }

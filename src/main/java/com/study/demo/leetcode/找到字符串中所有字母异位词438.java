@@ -35,23 +35,52 @@ public class 找到字符串中所有字母异位词438 {
      * @return
      */
     public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> result = new ArrayList<>();
-        int length = p.length();
-        Map<Character, Integer> countMap = new HashMap<>();
-        if (StringUtils.isBlank(s) || s.length() <length){
-            return result;
+        int sLen = s.length(), pLen = p.length();
+
+        if (sLen < pLen) {
+            return new ArrayList<Integer>();
         }
 
-        for (int i = 0; i < length; i++) {
-            countMap.put(p.charAt(i),countMap.getOrDefault(p.charAt(i),0)+1);
+        List<Integer> ans = new ArrayList<Integer>();
+        int[] count = new int[26];
+        for (int i = 0; i < pLen; ++i) {
+            ++count[s.charAt(i) - 'a'];
+            --count[p.charAt(i) - 'a'];
         }
 
-        for (int i = 0; i <= s.length()-length; i++) {
-            if (process(s.substring(i,i+length),countMap)){
-                result.add(i);
+        int differ = 0;
+        for (int j = 0; j < 26; ++j) {
+            if (count[j] != 0) {
+                ++differ;
             }
         }
-        return result;
+
+        if (differ == 0) {
+            ans.add(0);
+        }
+
+        for (int i = 0; i < sLen - pLen; ++i) {
+            if (count[s.charAt(i) - 'a'] == 1) {  // 窗口中字母 s[i] 的数量与字符串 p 中的数量从不同变得相同
+                --differ;
+            } else if (count[s.charAt(i) - 'a'] == 0) {  // 窗口中字母 s[i] 的数量与字符串 p 中的数量从相同变得不同
+                ++differ;
+            }
+            --count[s.charAt(i) - 'a'];
+
+            if (count[s.charAt(i + pLen) - 'a'] == -1) {  // 窗口中字母 s[i+pLen] 的数量与字符串 p 中的数量从不同变得相同
+                --differ;
+            } else if (count[s.charAt(i + pLen) - 'a'] == 0) {  // 窗口中字母 s[i+pLen] 的数量与字符串 p 中的数量从相同变得不同
+                ++differ;
+            }
+            ++count[s.charAt(i + pLen) - 'a'];
+
+            if (differ == 0) {
+                ans.add(i + 1);
+            }
+        }
+
+        return ans;
+
     }
 
     private boolean process(String substring, Map<Character, Integer> p) {
